@@ -1,0 +1,6 @@
+.gradle
+.idea
+*.class
+*.swp
+/local.properties
+/.idea/workspace.xml

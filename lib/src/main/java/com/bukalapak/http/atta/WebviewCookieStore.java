@@ -30,7 +30,7 @@ public class WebviewCookieStore implements CookieStore {
     }
 
     @Override
-    public void addCookie(Cookie cookie) {
+    public synchronized void addCookie(Cookie cookie) {
         this.cookieManager.setCookie(this.getCookieUrl(cookie), this.encodeCookie(cookie));
         this.syncManager.sync();
     }
@@ -56,7 +56,7 @@ public class WebviewCookieStore implements CookieStore {
     }
 
     @Override
-    public boolean clearExpired(Date date) {
+    public synchronized boolean clearExpired(Date date) {
         String before = this.cookieManager.getCookie(this.baseUrl);
         this.cookieManager.removeExpiredCookie();
         this.syncManager.sync();
@@ -65,7 +65,7 @@ public class WebviewCookieStore implements CookieStore {
     }
 
     @Override
-    public void clear() {
+    public synchronized void clear() {
         this.cookieManager.removeAllCookie();
         this.syncManager.sync();
     }
